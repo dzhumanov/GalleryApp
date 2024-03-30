@@ -15,7 +15,7 @@ const Photos = () => {
     dispatch(fetchPhotos());
   }, [dispatch]);
 
-  const handleDelete = async (id:string) => {
+  const handleDelete = async (id: string) => {
     await dispatch(deletePhoto(id));
     await dispatch(fetchPhotos());
   };

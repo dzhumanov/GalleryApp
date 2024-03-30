@@ -1,7 +1,7 @@
 import { useEffect } from "react";
 import { useParams } from "react-router-dom";
 import { useAppDispatch, useAppSelector } from "../../../app/hooks";
-import { fetchUserPhoto } from "../photosThunk";
+import { deletePhoto, fetchUserPhoto } from "../photosThunk";
 import { fetchUserInfo } from "../../users/usersThunk";
 import { selectUserInfo } from "../../users/usersSlice";
 import { selectPhotos, selectPhotosLoading } from "../photosSlice";
@@ -28,6 +28,13 @@ const UserGallery = () => {
     }
   }, [id, dispatch]);
 
+  const handleDelete = async (photoId: string) => {
+    await dispatch(deletePhoto(photoId));
+    if (id) {
+      await dispatch(fetchUserPhoto(id));
+    }
+  };
+
   return (
     <>
       <Typography variant="h2">{user?.displayName}'s gallery.</Typography>
@@ -36,7 +43,7 @@ const UserGallery = () => {
       ) : photos.length > 0 ? (
         <Grid container spacing={4} alignItems="center">
           {photos.map((photo) => (
-            <PhotoItem key={photo._id} photo={photo} />
+            <PhotoItem onDelete={handleDelete} key={photo._id} photo={photo} />
           ))}
         </Grid>
       ) : (

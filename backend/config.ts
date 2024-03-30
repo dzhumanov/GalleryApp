@@ -1,16 +1,16 @@
-import path from "path";
+import path from 'path';
 
 const rootPath = __dirname;
 
 const config = {
   rootPath,
-  publicPath: path.join(rootPath, "public"),
+  publicPath: path.join(rootPath, 'public'),
   mongoose: {
-    db: "mongodb://localhost/gallery",
+    db: 'mongodb://localhost/gallery',
   },
   google: {
-    clientId: process.env["GOOGLE_CLIENT_ID"],
-    clientSecret: process.env["GOOGLE_CLIENT_SECRET"],
+    clientId: process.env['GOOGLE_CLIENT_ID'],
+    clientSecret: process.env['GOOGLE_CLIENT_SECRET'],
   },
 };
 

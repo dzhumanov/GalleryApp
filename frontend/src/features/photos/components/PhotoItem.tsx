@@ -88,30 +88,31 @@ const PhotoItem: React.FC<Props> = ({ photo, onDelete }) => {
 
       <Dialog onClose={handleClose} open={open} maxWidth="lg">
         <DialogTitle sx={{ m: 0, p: 2, pb: 1 }}>{photo.title}</DialogTitle>
-        {user?.role === "admin" && (
-          <Button
-            onClick={handleDelete}
-            color="primary"
-            variant="contained"
-            sx={{
-              ml: "20px",
-              mb: "8px",
-              bgcolor: "#F86060",
-              color: "#fff",
-              width: "100px",
-              "&:hover": {
-                bgcolor: "#fff",
-                color: "#000",
-              },
-              "&:active": {
-                bgcolor: "#000",
+        {user?.role === "admin" ||
+          (user?._id === photo.user._id && (
+            <Button
+              onClick={handleDelete}
+              color="primary"
+              variant="contained"
+              sx={{
+                ml: "20px",
+                mb: "8px",
+                bgcolor: "#F86060",
                 color: "#fff",
-              },
-            }}
-          >
-            Delete
-          </Button>
-        )}
+                width: "100px",
+                "&:hover": {
+                  bgcolor: "#fff",
+                  color: "#000",
+                },
+                "&:active": {
+                  bgcolor: "#000",
+                  color: "#fff",
+                },
+              }}
+            >
+              Delete
+            </Button>
+          ))}
         <IconButton
           aria-label="close"
           onClick={handleClose}

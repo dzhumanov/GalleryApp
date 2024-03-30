@@ -43,8 +43,8 @@ export const login = createAsyncThunk<
 
     return response.data.user;
   } catch (e) {
-    if (isAxiosError(e) && e.response && e.response.status === 400) {
-      return rejectWithValue(e.response.data as GlobalError);
+    if (isAxiosError(e) && e.response && e.response.status === 422) {
+      return rejectWithValue(e.response.data);
     }
 
     throw e;
