@@ -20,7 +20,7 @@ import { selectUser } from "../../users/usersSlice";
 
 interface Props {
   photo: Photo;
-  onDelete: (id: string) => void;
+  onDelete: (photoId: string) => void;
 }
 
 const Link = styled(NavLink)({
@@ -50,8 +50,8 @@ const PhotoItem: React.FC<Props> = ({ photo, onDelete }) => {
 
   let cardImage = apiURL + "/" + photo.image;
   return (
-    <Grid item lg={3}>
-      <Box sx={{ border: "none", mb: "40px" }}>
+    <Grid item lg={3} md={4} sm={6} xs={12}>
+      <Box component="div" sx={{ border: "none" }}>
         <CardMedia
           component="img"
           height="360"
@@ -84,19 +84,16 @@ const PhotoItem: React.FC<Props> = ({ photo, onDelete }) => {
             Author: {photo.user.displayName}
           </Typography>
         </Link>
-      </Box>
 
-      <Dialog onClose={handleClose} open={open} maxWidth="lg">
-        <DialogTitle sx={{ m: 0, p: 2, pb: 1 }}>{photo.title}</DialogTitle>
-        {user?.role === "admin" ||
-          (user?._id === photo.user._id && (
+        <Box component="div" sx={{ height: "50px" }}>
+          {((user?.role === "admin" || user?._id === photo.user._id) && (
             <Button
               onClick={handleDelete}
               color="primary"
               variant="contained"
               sx={{
-                ml: "20px",
-                mb: "8px",
+                display: "block",
+                mx: "auto",
                 bgcolor: "#F86060",
                 color: "#fff",
                 width: "100px",
@@ -112,7 +109,12 @@ const PhotoItem: React.FC<Props> = ({ photo, onDelete }) => {
             >
               Delete
             </Button>
-          ))}
+          )) ||
+            null}
+        </Box>
+      </Box>
+      <Dialog onClose={handleClose} open={open} maxWidth="lg">
+        <DialogTitle sx={{ m: 0, p: 2, pb: 1 }}>{photo.title}</DialogTitle>
         <IconButton
           aria-label="close"
           onClick={handleClose}
