@@ -27,7 +27,7 @@ export const fetchOnePhoto = createAsyncThunk<Photo, string>(
   }
 );
 
-export const createCocktail = createAsyncThunk<
+export const createPhoto = createAsyncThunk<
   void,
   PhotoMutation,
   { state: RootState }
@@ -40,7 +40,9 @@ export const createCocktail = createAsyncThunk<
       const formData = new FormData();
 
       formData.append("title", photoMutation.title);
-      formData.append("image", photoMutation.image);
+      if (photoMutation.image) {
+        formData.append("image", photoMutation.image);
+      }
 
       await axiosApi.post("/photos", formData, {
         headers: { Authorization: `Bearer ${token}` },

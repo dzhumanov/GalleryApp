@@ -29,7 +29,7 @@ const Photos = () => {
       ) : photos.length > 0 ? (
         <Grid container spacing={4} alignItems="center">
           {photos.map((photo) => (
-            <PhotoItem photo={photo} />
+            <PhotoItem key={photo._id} photo={photo} />
           ))}
         </Grid>
       ) : (

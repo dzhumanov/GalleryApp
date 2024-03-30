@@ -7,6 +7,7 @@ import Register from "./features/users/Register";
 import Login from "./features/users/Login";
 import ProtectedRoute from "./components/ProtectedRoute/ProtectedRoute";
 import Photos from "./features/photos/containers/Photos";
+import CreatePhoto from "./features/photos/containers/CreatePhoto";
 
 function App() {
   const user = useAppSelector(selectUser);
@@ -26,18 +27,18 @@ function App() {
             <Route path="/" element={<Photos />} />
             {/* <Route path="//:id" element={} /> */}
 
-            {/* <Route
-              path="//create"
+            <Route
+              path="/photos/create"
               element={
                 <ProtectedRoute
                   isAllowed={
                     (user && user.role === "admin") || user?.role === "user"
                   }
                 >
-                  
+                  <CreatePhoto />
                 </ProtectedRoute>
               }
-            /> */}
+            />
 
             {/* <Route
               path="//my"
