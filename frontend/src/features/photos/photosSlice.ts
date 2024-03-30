@@ -1,5 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { Photo, UserMutation } from "../../types";
+import { Photo } from "../../types";
 import { RootState } from "../../app/store";
 import {
   fetchOnePhoto,

@@ -4,7 +4,7 @@ import { selectPhotos, selectPhotosLoading } from "../photosSlice";
 import Preloader from "../../../components/Preloader/Preloader";
 import PhotoItem from "../components/PhotoItem";
 import { useEffect } from "react";
-import { fetchPhotos } from "../photosThunk";
+import { deletePhoto, fetchPhotos } from "../photosThunk";
 
 const Photos = () => {
   const dispatch = useAppDispatch();
@@ -14,6 +14,12 @@ const Photos = () => {
   useEffect(() => {
     dispatch(fetchPhotos());
   }, [dispatch]);
+
+  const handleDelete = async (id:string) => {
+    await dispatch(deletePhoto(id));
+    await dispatch(fetchPhotos());
+  };
+
   return (
     <>
       <Typography
@@ -27,7 +33,7 @@ const Photos = () => {
       ) : photos.length > 0 ? (
         <Grid container spacing={4} alignItems="center">
           {photos.map((photo) => (
-            <PhotoItem key={photo._id} photo={photo} />
+            <PhotoItem onDelete={handleDelete} key={photo._id} photo={photo} />
           ))}
         </Grid>
       ) : (

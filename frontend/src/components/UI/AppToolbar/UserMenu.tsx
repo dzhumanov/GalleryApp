@@ -63,7 +63,7 @@ const UserMenu: React.FC<Props> = ({ user }) => {
       >
         <MenuItem>
           <Typography variant="h5" component="div" sx={{ textAlign: "center" }}>
-            <Link to="/photos/myPhotos">My gallery</Link>
+            <Link to={`/photos/${user._id}`}>My gallery</Link>
           </Typography>
         </MenuItem>
         <MenuItem>
