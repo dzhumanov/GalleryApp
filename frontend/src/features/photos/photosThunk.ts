@@ -70,3 +70,5 @@ export const deletePhoto = createAsyncThunk<void, string, { state: RootState }>(
     }
   }
 );
+
+

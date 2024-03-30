@@ -1,27 +1,36 @@
-import { Grid, Typography } from "@mui/material";
-import { useAppDispatch, useAppSelector } from "../../../app/hooks";
-import { selectPhotos, selectPhotosLoading } from "../photosSlice";
-import Preloader from "../../../components/Preloader/Preloader";
-import PhotoItem from "../components/PhotoItem";
 import { useEffect } from "react";
-import { fetchPhotos } from "../photosThunk";
+import { useParams } from "react-router-dom";
+import { useAppDispatch, useAppSelector } from "../../../app/hooks";
+import { fetchUserPhoto } from "../photosThunk";
+import { fetchUserInfo } from "../../users/usersThunk";
+import { selectUserInfo } from "../../users/usersSlice";
+import { selectPhotos, selectPhotosLoading } from "../photosSlice";
+import PhotoItem from "../components/PhotoItem";
+import Preloader from "../../../components/Preloader/Preloader";
+import { Grid, Typography } from "@mui/material";
 
-const Photos = () => {
+const UserGallery = () => {
+  const { id } = useParams();
   const dispatch = useAppDispatch();
+  const user = useAppSelector(selectUserInfo);
   const photos = useAppSelector(selectPhotos);
   const loading = useAppSelector(selectPhotosLoading);
 
   useEffect(() => {
-    dispatch(fetchPhotos());
-  }, [dispatch]);
+    if (id) {
+      dispatch(fetchUserInfo(id));
+    }
+  }, [dispatch, id]);
+
+  useEffect(() => {
+    if (id) {
+      dispatch(fetchUserPhoto(id));
+    }
+  }, [id, dispatch]);
+
   return (
     <>
-      <Typography
-        variant="h2"
-        sx={{ textAlign: "center", fontWeight: "bold", mb: "15px" }}
-      >
-        Gallery
-      </Typography>
+      <Typography variant="h2">{user?.displayName}'s gallery.</Typography>
       {loading ? (
         <Preloader loading={loading} />
       ) : photos.length > 0 ? (
@@ -39,4 +48,4 @@ const Photos = () => {
   );
 };
 
-export default Photos;
+export default UserGallery;

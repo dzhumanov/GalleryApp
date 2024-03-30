@@ -1,12 +1,32 @@
 import express from "express";
 import User from "../models/User";
-import mongoose from "mongoose";
+import mongoose, { Types } from "mongoose";
 import config from "../config";
-import { imageUpload } from "../multer";
 import { OAuth2Client } from "google-auth-library";
 
 const userRouter = express.Router();
 const client = new OAuth2Client(config.google.clientId);
+
+userRouter.get("/:id", async (req, res, next) => {
+  try {
+    let _id: Types.ObjectId;
+    try {
+      _id = new Types.ObjectId(req.params.id);
+    } catch {
+      return res.status(404).send({ error: "Wrong ObjectId!" });
+    }
+
+    const user = await User.findById(_id).select("displayName _id");
+
+    if (!user) {
+      return res.status(404).send({ error: "Not found!" });
+    }
+
+    res.send(user);
+  } catch (e) {
+    next(e);
+  }
+});
 
 userRouter.post("/", async (req, res, next) => {
   try {

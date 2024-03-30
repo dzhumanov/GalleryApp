@@ -8,6 +8,7 @@ import Login from "./features/users/Login";
 import ProtectedRoute from "./components/ProtectedRoute/ProtectedRoute";
 import Photos from "./features/photos/containers/Photos";
 import CreatePhoto from "./features/photos/containers/CreatePhoto";
+import UserGallery from "./features/photos/containers/UserGallery";
 
 function App() {
   const user = useAppSelector(selectUser);
@@ -25,7 +26,7 @@ function App() {
             <Route path="/login" element={<Login />} />
 
             <Route path="/" element={<Photos />} />
-            {/* <Route path="//:id" element={} /> */}
+            <Route path="/photos/:id" element={<UserGallery />} />
 
             <Route
               path="/photos/create"
@@ -39,19 +40,6 @@ function App() {
                 </ProtectedRoute>
               }
             />
-
-            {/* <Route
-              path="//my"
-              element={
-                <ProtectedRoute
-                  isAllowed={
-                    (user && user.role === "admin") || user?.role === "user"
-                  }
-                >
-                  
-                </ProtectedRoute>
-              }
-            /> */}
 
             <Route
               path="*"

@@ -5,6 +5,7 @@ import {
   RegisterMutation,
   RegisterResponse,
   User,
+  UserMutation,
   ValidationError,
 } from "../../types";
 import axiosApi from "../../axiosApi";
@@ -77,6 +78,14 @@ export const googleLogin = createAsyncThunk<
     throw e;
   }
 });
+
+export const fetchUserInfo = createAsyncThunk<UserMutation, string>(
+  "users/fetchUserInfo",
+  async (userId: string) => {
+    const response = await axiosApi.get<UserMutation>(`/users/${userId}`);
+    return response.data;
+  }
+);
 
 export const logout = createAsyncThunk<void, undefined, { state: RootState }>(
   "users/logout",

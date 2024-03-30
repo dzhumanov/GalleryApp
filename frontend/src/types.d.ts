@@ -39,12 +39,14 @@ export interface LoginMutation {
   password: string;
 }
 
+export interface UserMutation {
+  _id: string;
+  displayName: string;
+}
+
 export interface Photo {
   _id: string;
-  user: {
-    _id: string;
-    displayName: string;
-  };
+  user: UserMutation;
   title: string;
   image: string;
 }

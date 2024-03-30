@@ -1,7 +1,11 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { Photo } from "../../types";
+import { Photo, UserMutation } from "../../types";
 import { RootState } from "../../app/store";
-import { fetchOnePhoto, fetchPhotos, fetchUserPhoto } from "./photosThunk";
+import {
+  fetchOnePhoto,
+  fetchPhotos,
+  fetchUserPhoto,
+} from "./photosThunk";
 
 interface PhotosState {
   photos: Photo[];
