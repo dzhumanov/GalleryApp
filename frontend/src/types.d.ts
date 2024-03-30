@@ -4,7 +4,6 @@ export interface User {
     role: string;
     token: string;
     displayName: string;
-    avatar: string;
     googleID?: string;
   }
   

@@ -20,7 +20,7 @@ const AppToolbar = () => {
       position="sticky"
       sx={{
         mb: 2,
-        bgcolor: "#F86060",
+        bgcolor: "#131313",
         maxWidth: "80%",
         mx: "auto",
         borderBottomRightRadius: "30px",
@@ -29,7 +29,11 @@ const AppToolbar = () => {
     >
       <Toolbar>
         <Grid container justifyContent="space-between" alignItems="center">
-          <Typography variant="h3" component="div" sx={{ textAlign: "center" }}>
+          <Typography
+            variant="h3"
+            component="div"
+            sx={{ textAlign: "center", color: "#E9E9F2" }}
+          >
             <Link to="/">Cocktail app</Link>
           </Typography>
           <Grid item>

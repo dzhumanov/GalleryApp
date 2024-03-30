@@ -1,4 +1,4 @@
-import { Container, CssBaseline } from "@mui/material";
+import { Container, CssBaseline, Typography } from "@mui/material";
 import { useAppSelector } from "./app/hooks";
 import { selectUser } from "./features/users/usersSlice";
 import AppToolbar from "./components/UI/AppToolbar/AppToolbar";
@@ -51,7 +51,14 @@ function App() {
               }
             /> */}
 
-            <Route path="*" element={<h1>Not found</h1>} />
+            <Route
+              path="*"
+              element={
+                <Typography variant="h1" sx={{ textAlign: "center" }}>
+                  Not found
+                </Typography>
+              }
+            />
           </Routes>
         </Container>
       </main>

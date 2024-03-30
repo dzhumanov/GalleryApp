@@ -12,7 +12,6 @@ import { User } from "../../../types";
 import { useAppDispatch } from "../../../app/hooks";
 import { NavLink } from "react-router-dom";
 import { logout } from "../../../features/users/usersThunk";
-import { apiURL } from "../../../constants";
 
 interface Props {
   user: User;
@@ -42,23 +41,14 @@ const UserMenu: React.FC<Props> = ({ user }) => {
     dispatch(logout());
   };
 
-  let avatar;
-
-  if (!user.googleID) {
-    avatar = apiURL + "/" + user.avatar;
-  } else {
-    avatar = user.avatar;
-  }
-
   return (
     <>
       <Grid container alignItems="center">
-        <Avatar
-          sx={{ width: "60px", height: "60px", border: "2px solid white" }}
-          alt={user.displayName}
-          src={avatar}
-        />
-        <Button onClick={handleClick} color="inherit" sx={{ fontSize: "32px" }}>
+        <Button
+          onClick={handleClick}
+          color="inherit"
+          sx={{ fontSize: "32px", color: "#E9E9F2" }}
+        >
           Hello, {user.displayName}
         </Button>
       </Grid>
@@ -74,12 +64,12 @@ const UserMenu: React.FC<Props> = ({ user }) => {
       >
         <MenuItem>
           <Typography variant="h5" component="div" sx={{ textAlign: "center" }}>
-            <Link to="/cocktails/myCocktails">My cocktails</Link>
+            <Link to="/photos/myPhotos">My gallery</Link>
           </Typography>
         </MenuItem>
         <MenuItem>
           <Typography variant="h5" component="div" sx={{ textAlign: "center" }}>
-            <Link to="/cocktails/create">Post new cocktail</Link>
+            <Link to="/photos/create">Post new photo</Link>
           </Typography>
         </MenuItem>
         <MenuItem onClick={handleLogout}>
