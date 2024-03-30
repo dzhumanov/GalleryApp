@@ -6,6 +6,7 @@ import { Route, Routes } from "react-router-dom";
 import Register from "./features/users/Register";
 import Login from "./features/users/Login";
 import ProtectedRoute from "./components/ProtectedRoute/ProtectedRoute";
+import Photos from "./features/photos/containers/Photos";
 
 function App() {
   const user = useAppSelector(selectUser);
@@ -22,7 +23,7 @@ function App() {
             <Route path="/register" element={<Register />} />
             <Route path="/login" element={<Login />} />
 
-            {/* <Route path="/" element={} /> */}
+            <Route path="/" element={<Photos />} />
             {/* <Route path="//:id" element={} /> */}
 
             {/* <Route
