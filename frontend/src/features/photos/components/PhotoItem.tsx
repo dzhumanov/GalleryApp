@@ -59,6 +59,11 @@ const PhotoItem: React.FC<Props> = ({ photo, onDelete }) => {
           sx={{
             bgcolor: "#fff",
             boxShadow: "4px 9px 13px -4px rgba(0,0,0,0.31)",
+            transition: "transform 0.3s ease-in-out",
+            cursor: "pointer",
+            "&:hover": {
+              transform: "scale(1.05)",
+            },
           }}
           onClick={handleClickOpen}
         />
